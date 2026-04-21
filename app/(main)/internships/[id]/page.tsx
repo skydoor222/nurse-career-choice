@@ -1,11 +1,35 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, Clock, MapPin, Users, ChevronRight } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  ChevronRight,
+  Shirt,
+  Wallet,
+  ShieldCheck,
+} from "lucide-react";
 import { getInternship } from "@/lib/queries";
 import { formatDate, formatTime } from "@/lib/utils";
 import { createServer } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
+
+const HELPER_TASKS = [
+  "シーツ・リネンの交換",
+  "ベッド周りの環境整備",
+  "病棟内の物品補充",
+  "患者さんの配膳・下膳の補助",
+  "清掃・消毒のサポート",
+  "看護師さんへのちょっとした声かけ・伝達",
+];
+
+const NG_TASKS = [
+  "採血・点滴など医療行為",
+  "投薬・注射",
+  "バイタル測定",
+];
 
 export default async function InternshipDetail({
   params,
@@ -67,9 +91,26 @@ export default async function InternshipDetail({
           </p>
         </div>
 
+        <div className="mt-4 grid grid-cols-3 gap-2 text-[11px]">
+          <div className="rounded-xl bg-emerald-50 px-3 py-2 text-center text-emerald-700">
+            <Wallet className="mx-auto h-4 w-4" />
+            <p className="mt-1 font-bold">時給あり</p>
+          </div>
+          <div className="rounded-xl bg-blue-50 px-3 py-2 text-center text-blue-700">
+            <Shirt className="mx-auto h-4 w-4" />
+            <p className="mt-1 font-bold">ユニフォーム貸出</p>
+          </div>
+          <div className="rounded-xl bg-brand-pink/10 px-3 py-2 text-center text-brand-pink">
+            <ShieldCheck className="mx-auto h-4 w-4" />
+            <p className="mt-1 font-bold">資格不要</p>
+          </div>
+        </div>
+
         {it.description && (
           <div className="mt-5 rounded-xl bg-brand-bg p-4">
-            <p className="mb-1 text-xs font-bold text-brand-navy/70">業務内容</p>
+            <p className="mb-1 text-xs font-bold text-brand-navy/70">
+              病院からのメッセージ
+            </p>
             <p className="whitespace-pre-line text-sm leading-relaxed">
               {it.description}
             </p>
@@ -87,7 +128,7 @@ export default async function InternshipDetail({
             </button>
           ) : (
             <Link href={`/internships/${it.id}/apply`} className="btn-primary">
-              この体験に応募する
+              この体験に応募する（30秒）
             </Link>
           )}
 
@@ -100,13 +141,75 @@ export default async function InternshipDetail({
         </div>
       </section>
 
+      <section className="mt-6 grid gap-3 md:grid-cols-2">
+        <div className="card">
+          <h2 className="font-bold text-emerald-700">✓ 当日やること</h2>
+          <p className="mt-1 text-xs text-brand-navy/60">
+            看護助手として、以下の業務をサポートします。
+          </p>
+          <ul className="mt-3 space-y-1.5 text-sm">
+            {HELPER_TASKS.map((t) => (
+              <li key={t} className="flex items-start gap-2">
+                <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="card">
+          <h2 className="font-bold text-red-700">✗ やらないこと</h2>
+          <p className="mt-1 text-xs text-brand-navy/60">
+            医療行為は一切ありません。資格不要で安心して参加できます。
+          </p>
+          <ul className="mt-3 space-y-1.5 text-sm">
+            {NG_TASKS.map((t) => (
+              <li key={t} className="flex items-start gap-2 text-brand-navy/70">
+                <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-red-400" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="mt-6 card">
-        <h2 className="font-bold">注意事項</h2>
-        <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-brand-navy/80">
-          <li>看護助手としての参加のため、医療行為は行いません。資格不要でご参加いただけます。</li>
-          <li>動きやすい服装でお越しください。ユニフォームは病院側が用意します。</li>
-          <li>応募後、病院側の承認をもって確定となります。ステータスはマイページで確認できます。</li>
-        </ul>
+        <h2 className="font-bold">当日の流れ</h2>
+        <ol className="mt-3 space-y-2 text-sm text-brand-navy/80">
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+              1
+            </span>
+            受付で学生証を提示→着替え
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+              2
+            </span>
+            病棟師長から業務説明（15分）
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+              3
+            </span>
+            先輩看護師とペアで環境整備・配膳などサポート
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+              4
+            </span>
+            休憩時間に看護師さんと雑談、質問タイム
+          </li>
+          <li className="flex gap-3">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+              5
+            </span>
+            終了後、任意で感想フィードバック
+          </li>
+        </ol>
+        <p className="mt-4 text-[11px] text-brand-navy/60">
+          ※ 動きやすい服装でお越しください。ユニフォームと靴は病院が貸出します。
+        </p>
       </section>
     </div>
   );

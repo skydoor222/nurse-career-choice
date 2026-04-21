@@ -1,5 +1,12 @@
 import { notFound, redirect } from "next/navigation";
-import { Calendar, Clock } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  CheckCircle2,
+  ShieldCheck,
+  Wallet,
+  Shirt,
+} from "lucide-react";
 import { getInternship } from "@/lib/queries";
 import { createServer } from "@/lib/supabase";
 import { formatDate, formatTime } from "@/lib/utils";
@@ -58,13 +65,28 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
     .single();
 
   return (
-    <div className="mx-auto max-w-xl">
-      <h1 className="text-2xl font-black">応募フォーム</h1>
+    <div className="mx-auto max-w-lg">
+      {/* ミニプログレス */}
+      <nav aria-label="応募ステップ" className="mb-5 flex items-center gap-2 text-xs">
+        <Step n={1} label="内容確認" state="done" />
+        <span className="h-px flex-1 bg-brand-pink" />
+        <Step n={2} label="情報入力" state="active" />
+        <span className="h-px flex-1 bg-black/10" />
+        <Step n={3} label="完了" state="todo" />
+      </nav>
 
+      <h1 className="text-2xl font-black">応募内容の確認</h1>
+      <p className="mt-1 text-sm text-brand-navy/70">
+        履歴書不要・面接なし。送信後すぐ病院に通知されます。
+      </p>
+
+      {/* 応募内容 */}
       <div className="mt-4 card">
-        <p className="text-xs text-brand-navy/60">{it.ward?.hospital?.name}</p>
+        <p className="text-xs text-brand-navy/60">
+          {it.ward?.hospital?.name}
+        </p>
         <h2 className="font-bold">{it.ward?.name}</h2>
-        <div className="mt-2 flex flex-wrap gap-3 text-sm text-brand-navy/70">
+        <div className="mt-2 flex flex-wrap gap-3 text-sm text-brand-navy/80">
           <span className="flex items-center gap-1">
             <Calendar className="h-3.5 w-3.5" />
             {formatDate(it.date)}
@@ -74,53 +96,100 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
             {formatTime(it.start_time)}〜{formatTime(it.end_time)}
           </span>
         </div>
+        <div className="mt-3 flex flex-wrap gap-1.5 text-[11px]">
+          <span className="badge badge-green">
+            <Wallet className="h-3 w-3" />
+            時給あり
+          </span>
+          <span className="badge badge-navy">
+            <Shirt className="h-3 w-3" />
+            服貸出
+          </span>
+          <span className="badge badge-pink">
+            <ShieldCheck className="h-3 w-3" />
+            資格不要
+          </span>
+        </div>
       </div>
 
-      <form action={submitApply} className="mt-6 card space-y-4">
+      {/* フォーム */}
+      <form action={submitApply} className="mt-4 card space-y-4">
         <input type="hidden" name="internship_id" value={it.id} />
 
         <div>
-          <label className="mb-1 block text-xs font-bold">氏名</label>
-          <input
-            defaultValue={profile?.display_name ?? ""}
-            className="input bg-brand-bg"
-            readOnly
-          />
-          <p className="mt-1 text-[11px] text-brand-navy/60">
-            プロフィールの表示名を使用します。変更はマイページから。
+          <p className="text-xs font-bold">お名前</p>
+          <p className="mt-1 flex items-center gap-2 rounded-lg bg-brand-bg px-4 py-3 text-sm">
+            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+            {profile?.display_name ?? "（未設定）"}
+          </p>
+          <p className="mt-1 text-[10px] text-brand-navy/60">
+            マイページで変更できます
           </p>
         </div>
 
-        {profile?.user_type === "student" && (
+        {profile?.user_type === "student" && profile?.school_name && (
           <div>
-            <label className="mb-1 block text-xs font-bold">学校名</label>
-            <input
-              defaultValue={profile?.school_name ?? ""}
-              className="input bg-brand-bg"
-              readOnly
-            />
+            <p className="text-xs font-bold">学校名</p>
+            <p className="mt-1 flex items-center gap-2 rounded-lg bg-brand-bg px-4 py-3 text-sm">
+              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+              {profile.school_name}
+            </p>
           </div>
         )}
 
         <div>
-          <label className="mb-1 block text-xs font-bold">
-            志望動機 <span className="font-normal text-brand-navy/60">(任意)</span>
+          <label className="text-xs font-bold">
+            志望動機・ひと言 <span className="font-normal text-brand-navy/50">(任意・10秒でOK)</span>
           </label>
           <textarea
             name="motivation"
-            rows={6}
-            className="input resize-none"
-            placeholder="例：この病棟の忙しさや雰囲気を体験してから就職先を決めたいです。"
+            rows={3}
+            maxLength={400}
+            className="input mt-1 resize-none"
+            placeholder="例）就職前にリアルな雰囲気を知りたいです！"
           />
         </div>
 
-        <button type="submit" className="btn-primary w-full">
-          応募を送信する
+        <button type="submit" className="btn-primary w-full py-4 text-base">
+          この内容で応募する
         </button>
-        <p className="text-center text-xs text-brand-navy/60">
-          送信後、病院側の承認をもって確定となります。
+        <p className="text-center text-[11px] text-brand-navy/60">
+          送信後、病院側の承認をもって確定。キャンセルはマイページから可能です。
         </p>
       </form>
+    </div>
+  );
+}
+
+function Step({
+  n,
+  label,
+  state,
+}: {
+  n: number;
+  label: string;
+  state: "done" | "active" | "todo";
+}) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <span
+        className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-black ${
+          state === "done"
+            ? "bg-brand-pink text-white"
+            : state === "active"
+            ? "bg-brand-pink text-white ring-4 ring-brand-pink/20"
+            : "bg-black/10 text-brand-navy/50"
+        }`}
+      >
+        {state === "done" ? "✓" : n}
+      </span>
+      <span
+        className={`font-bold ${
+          state === "todo" ? "text-brand-navy/40" : "text-brand-navy"
+        }`}
+      >
+        {label}
+      </span>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { TrustFooter } from "@/components/trust-footer";
 
 export default function LandingPage() {
   return (
@@ -155,9 +156,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <footer className="border-t border-black/5 bg-white py-10 text-center text-xs text-brand-navy/60">
-          © {new Date().getFullYear()} NurseChoice
-        </footer>
+        <TrustFooter />
       </main>
     </>
   );
