@@ -16,32 +16,35 @@ export function ScoreBadge({
   showNumber = true,
   className,
 }: Props) {
-  const starSize = size === "sm" ? "h-3.5 w-3.5" : size === "lg" ? "h-5 w-5" : "h-4 w-4";
-  const textSize = size === "sm" ? "text-xs" : size === "lg" ? "text-lg" : "text-sm";
+  const starSize =
+    size === "sm" ? "h-3 w-3" : size === "lg" ? "h-4 w-4" : "h-3.5 w-3.5";
+  const textSize =
+    size === "sm" ? "text-[13px]" : size === "lg" ? "text-lg" : "text-sm";
   const rounded = Math.round(score * 2) / 2;
   return (
-    <span className={cn("inline-flex items-center gap-1", className)}>
-      <span className="flex">
+    <span className={cn("inline-flex items-center gap-1.5", className)}>
+      <span className="flex gap-0.5">
         {Array.from({ length: outOf }).map((_, i) => {
           const filled = i + 1 <= rounded;
           const half = !filled && i + 0.5 === rounded;
           return (
             <Star
               key={i}
+              strokeWidth={1.5}
               className={cn(
                 starSize,
                 filled
-                  ? "fill-amber-400 text-amber-400"
+                  ? "fill-coral-500 text-coral-500"
                   : half
-                  ? "fill-amber-200 text-amber-400"
-                  : "fill-gray-200 text-gray-300"
+                  ? "fill-coral-200 text-coral-400"
+                  : "fill-hairline text-hairline"
               )}
             />
           );
         })}
       </span>
       {showNumber && (
-        <span className={cn("font-bold tabular-nums", textSize)}>
+        <span className={cn("font-medium tabular-nums", textSize)}>
           {score.toFixed(1)}
         </span>
       )}

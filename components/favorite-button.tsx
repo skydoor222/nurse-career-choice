@@ -35,8 +35,8 @@ export function FavoriteButton({
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-4 py-2 text-sm font-bold transition",
         fav
-          ? "border-brand-pink bg-brand-pink text-white"
-          : "border-brand-navy/20 bg-white text-brand-navy hover:bg-brand-navy/5"
+          ? "border-coral-500 bg-coral-500 text-white"
+          : "border-hairline bg-white text-ink hover:bg-ink/5"
       )}
     >
       <Heart className={cn("h-4 w-4", fav && "fill-white")} />

@@ -3,8 +3,8 @@ export const metadata = { title: "プライバシーポリシー | NurseChoice" 
 export default function PrivacyPage() {
   return (
     <div className="mx-auto max-w-2xl prose prose-sm">
-      <h1 className="text-3xl font-black">プライバシーポリシー</h1>
-      <p className="text-xs text-brand-navy/60">最終更新: 2026-04-22</p>
+      <h1 className="text-3xl font-medium tracking-tight">プライバシーポリシー</h1>
+      <p className="text-xs text-ink-muted">最終更新: 2026-04-22</p>
 
       <p>
         NurseChoice（以下「当サービス」）は、利用者のプライバシーを最重要視し、
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
 
       <h2>6. お問い合わせ</h2>
       <p>
-        <a href="mailto:support@nursechoice.example.com" className="text-brand-pink">
+        <a href="mailto:support@nursechoice.example.com" className="text-coral-500">
           support@nursechoice.example.com
         </a>
       </p>

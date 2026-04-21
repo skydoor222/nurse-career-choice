@@ -33,8 +33,8 @@ export default async function SearchPage({
   return (
     <div>
       <header className="mb-6">
-        <h1 className="text-2xl font-black">病棟を探す</h1>
-        <p className="mt-1 text-sm text-brand-navy/70">
+        <h1 className="text-2xl font-medium tracking-tight">病棟を探す</h1>
+        <p className="mt-1 text-sm text-ink-muted">
           {wards.length}件の病棟が見つかりました
         </p>
       </header>
@@ -83,7 +83,7 @@ export default async function SearchPage({
       </form>
 
       {wards.length === 0 ? (
-        <div className="card text-center text-sm text-brand-navy/60">
+        <div className="card text-center text-sm text-ink-muted">
           該当する病棟がありません。条件を変えてお試しください。
         </div>
       ) : (

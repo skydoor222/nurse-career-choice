@@ -29,16 +29,18 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <div className="card">
-      <h1 className="text-2xl font-black">パスワードリセット</h1>
+    <div className="card-solid">
+      <h1 className="text-display-md font-medium tracking-tight">
+        パスワードリセット
+      </h1>
 
       {sent ? (
-        <div className="mt-6 rounded-lg bg-emerald-50 p-4 text-sm text-emerald-800">
+        <div className="mt-6 rounded-xl bg-sage-200/50 p-4 text-sm text-sage-700">
           リセット用メールを送信しました。メール内のリンクから再設定してください。
         </div>
       ) : (
         <>
-          <p className="mt-2 text-sm text-brand-navy/70">
+          <p className="mt-2 text-sm text-ink-muted">
             登録済みのメールアドレスを入力してください。再設定リンクをお送りします。
           </p>
           <form onSubmit={submit} className="mt-6 space-y-4">
@@ -61,7 +63,7 @@ export default function ResetPasswordPage() {
       )}
 
       <p className="mt-6 text-center text-sm">
-        <Link href="/login" className="font-bold text-brand-pink">
+        <Link href="/login" className="font-bold text-coral-500">
           ログイン画面に戻る
         </Link>
       </p>

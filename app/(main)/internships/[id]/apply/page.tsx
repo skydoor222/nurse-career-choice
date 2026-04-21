@@ -69,24 +69,24 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
       {/* ミニプログレス */}
       <nav aria-label="応募ステップ" className="mb-5 flex items-center gap-2 text-xs">
         <Step n={1} label="内容確認" state="done" />
-        <span className="h-px flex-1 bg-brand-pink" />
+        <span className="h-px flex-1 bg-coral-500" />
         <Step n={2} label="情報入力" state="active" />
         <span className="h-px flex-1 bg-black/10" />
         <Step n={3} label="完了" state="todo" />
       </nav>
 
-      <h1 className="text-2xl font-black">応募内容の確認</h1>
-      <p className="mt-1 text-sm text-brand-navy/70">
+      <h1 className="text-2xl font-medium tracking-tight">応募内容の確認</h1>
+      <p className="mt-1 text-sm text-ink-muted">
         履歴書不要・面接なし。送信後すぐ病院に通知されます。
       </p>
 
       {/* 応募内容 */}
       <div className="mt-4 card">
-        <p className="text-xs text-brand-navy/60">
+        <p className="text-xs text-ink-muted">
           {it.ward?.hospital?.name}
         </p>
         <h2 className="font-bold">{it.ward?.name}</h2>
-        <div className="mt-2 flex flex-wrap gap-3 text-sm text-brand-navy/80">
+        <div className="mt-2 flex flex-wrap gap-3 text-sm text-ink/85">
           <span className="flex items-center gap-1">
             <Calendar className="h-3.5 w-3.5" />
             {formatDate(it.date)}
@@ -118,11 +118,11 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
 
         <div>
           <p className="text-xs font-bold">お名前</p>
-          <p className="mt-1 flex items-center gap-2 rounded-lg bg-brand-bg px-4 py-3 text-sm">
+          <p className="mt-1 flex items-center gap-2 rounded-lg bg-canvas px-4 py-3 text-sm">
             <CheckCircle2 className="h-4 w-4 text-emerald-600" />
             {profile?.display_name ?? "（未設定）"}
           </p>
-          <p className="mt-1 text-[10px] text-brand-navy/60">
+          <p className="mt-1 text-[10px] text-ink-muted">
             マイページで変更できます
           </p>
         </div>
@@ -130,7 +130,7 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
         {profile?.user_type === "student" && profile?.school_name && (
           <div>
             <p className="text-xs font-bold">学校名</p>
-            <p className="mt-1 flex items-center gap-2 rounded-lg bg-brand-bg px-4 py-3 text-sm">
+            <p className="mt-1 flex items-center gap-2 rounded-lg bg-canvas px-4 py-3 text-sm">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
               {profile.school_name}
             </p>
@@ -139,7 +139,7 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
 
         <div>
           <label className="text-xs font-bold">
-            志望動機・ひと言 <span className="font-normal text-brand-navy/50">(任意・10秒でOK)</span>
+            志望動機・ひと言 <span className="font-normal text-ink-soft">(任意・10秒でOK)</span>
           </label>
           <textarea
             name="motivation"
@@ -153,7 +153,7 @@ export default async function ApplyPage({ params }: { params: { id: string } }) 
         <button type="submit" className="btn-primary w-full py-4 text-base">
           この内容で応募する
         </button>
-        <p className="text-center text-[11px] text-brand-navy/60">
+        <p className="text-center text-[11px] text-ink-muted">
           送信後、病院側の承認をもって確定。キャンセルはマイページから可能です。
         </p>
       </form>
@@ -173,19 +173,19 @@ function Step({
   return (
     <div className="flex items-center gap-1.5">
       <span
-        className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-black ${
+        className={`flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-medium tracking-tight ${
           state === "done"
-            ? "bg-brand-pink text-white"
+            ? "bg-coral-500 text-white"
             : state === "active"
-            ? "bg-brand-pink text-white ring-4 ring-brand-pink/20"
-            : "bg-black/10 text-brand-navy/50"
+            ? "bg-coral-500 text-white ring-4 ring-coral-300"
+            : "bg-black/10 text-ink-soft"
         }`}
       >
         {state === "done" ? "✓" : n}
       </span>
       <span
         className={`font-bold ${
-          state === "todo" ? "text-brand-navy/40" : "text-brand-navy"
+          state === "todo" ? "text-ink-soft" : "text-ink"
         }`}
       >
         {label}

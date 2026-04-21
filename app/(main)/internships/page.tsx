@@ -20,12 +20,12 @@ export default async function InternshipsPage({
 
   return (
     <div>
-      <header className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-pink via-[#ff5a9a] to-[#ff8cb5] p-6 text-white md:p-8">
+      <header className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-br from-coral-500 via-[#ff5a9a] to-[#ff8cb5] p-6 text-white md:p-8">
         <p className="inline-flex items-center gap-1 rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-bold backdrop-blur">
           <Sparkles className="h-3 w-3" />
           学生向け・バイト感覚でOK
         </p>
-        <h1 className="mt-3 text-2xl font-black leading-tight md:text-3xl">
+        <h1 className="mt-3 text-2xl font-medium tracking-tight leading-tight md:text-3xl">
           1日だけ、
           <br className="md:hidden" />
           病棟に潜入してみる。
@@ -89,11 +89,11 @@ export default async function InternshipsPage({
         </button>
       </form>
 
-      <h2 className="mb-3 text-sm font-black text-brand-navy/70">
+      <h2 className="mb-3 text-sm font-medium tracking-tight text-ink-muted">
         募集中の体験枠 ({internships.length}件)
       </h2>
       {internships.length === 0 ? (
-        <p className="card text-sm text-brand-navy/60">
+        <p className="card text-sm text-ink-muted">
           条件に合う体験枠が見つかりませんでした。
         </p>
       ) : (
@@ -106,7 +106,7 @@ export default async function InternshipsPage({
             >
               <div className="flex items-start justify-between">
                 <div className="min-w-0">
-                  <p className="truncate text-xs text-brand-navy/60">
+                  <p className="truncate text-xs text-ink-muted">
                     {it.ward?.hospital?.name}
                   </p>
                   <h3 className="truncate text-lg font-bold">{it.ward?.name}</h3>
@@ -119,7 +119,7 @@ export default async function InternshipsPage({
                   残り{it.remaining}枠
                 </span>
               </div>
-              <div className="mt-3 grid gap-1 text-sm text-brand-navy/70">
+              <div className="mt-3 grid gap-1 text-sm text-ink-muted">
                 <p className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   {formatDate(it.date)}
@@ -144,12 +144,12 @@ export default async function InternshipsPage({
 function HowCard({ step, title, desc }: { step: number; title: string; desc: string }) {
   return (
     <div className="card flex gap-3">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 font-black text-brand-pink">
+      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-coral-100 font-medium tracking-tight text-coral-500">
         {step}
       </span>
       <div>
         <p className="text-sm font-bold">{title}</p>
-        <p className="mt-0.5 text-xs text-brand-navy/70">{desc}</p>
+        <p className="mt-0.5 text-xs text-ink-muted">{desc}</p>
       </div>
     </div>
   );

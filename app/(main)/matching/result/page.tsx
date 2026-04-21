@@ -103,12 +103,12 @@ export default function MatchingResultPage() {
   }, []);
 
   if (loading) {
-    return <p className="card text-center text-sm text-brand-navy/60">計算中です...</p>;
+    return <p className="card text-center text-sm text-ink-muted">計算中です...</p>;
   }
   if (!hasAnswers) {
     return (
       <div className="card text-center">
-        <p className="text-sm text-brand-navy/70">
+        <p className="text-sm text-ink-muted">
           まず診断を受けてください（10問・約2分）
         </p>
         <Link href="/matching" className="btn-primary mt-4 inline-flex">
@@ -121,12 +121,12 @@ export default function MatchingResultPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <header className="mb-6">
-        <p className="inline-flex items-center gap-1 text-sm font-bold text-brand-pink">
+        <p className="inline-flex items-center gap-1 text-sm font-bold text-coral-500">
           <Sparkles className="h-4 w-4" />
           診断結果
         </p>
-        <h1 className="mt-1 text-2xl font-black">あなたにマッチする上位5病棟</h1>
-        <p className="mt-2 text-sm text-brand-navy/70">
+        <h1 className="mt-1 text-2xl font-medium tracking-tight">あなたにマッチする上位5病棟</h1>
+        <p className="mt-2 text-sm text-ink-muted">
           スコアは回答内容と各病棟のレビュー集計に基づく参考値です。
         </p>
       </header>
@@ -134,7 +134,7 @@ export default function MatchingResultPage() {
       <div className="grid gap-3 md:grid-cols-2">
         {wards.map((w, i) => (
           <div key={w.summary.ward.id} className="relative">
-            <span className="absolute -left-2 -top-2 z-10 inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-navy text-xs font-black text-white">
+            <span className="absolute -left-2 -top-2 z-10 inline-flex h-7 w-7 items-center justify-center rounded-full bg-ink text-xs font-medium tracking-tight text-white">
               {i + 1}
             </span>
             <WardCard summary={w.summary} matchScore={w.score} />
@@ -143,7 +143,7 @@ export default function MatchingResultPage() {
       </div>
 
       {wards.length === 0 && (
-        <p className="card text-center text-sm text-brand-navy/60">
+        <p className="card text-center text-sm text-ink-muted">
           該当する病棟が見つかりませんでした。
         </p>
       )}

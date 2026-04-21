@@ -87,8 +87,8 @@ export default function ProfileSetupPage() {
 
   return (
     <div className="mx-auto max-w-xl">
-      <h1 className="text-2xl font-black">プロフィール設定</h1>
-      <p className="mt-2 text-sm text-brand-navy/70">
+      <h1 className="text-2xl font-medium tracking-tight">プロフィール設定</h1>
+      <p className="mt-2 text-sm text-ink-muted">
         あなたに合った病棟をおすすめするために、少しだけ教えてください。
       </p>
 
@@ -156,8 +156,8 @@ export default function ProfileSetupPage() {
                 onClick={() => toggleDept(d)}
                 className={`rounded-full border px-3 py-1.5 text-sm ${
                   departments.includes(d)
-                    ? "border-brand-pink bg-brand-pink text-white"
-                    : "border-black/10 bg-white text-brand-navy/70"
+                    ? "border-coral-500 bg-coral-500 text-white"
+                    : "border-black/10 bg-white text-ink-muted"
                 }`}
               >
                 {d}

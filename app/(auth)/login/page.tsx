@@ -28,11 +28,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="card">
-      <h1 className="text-2xl font-black">ログイン</h1>
+    <div className="card-solid">
+      <h1 className="text-display-md font-medium tracking-tight">ログイン</h1>
       <form onSubmit={submit} className="mt-6 space-y-4">
         <div>
-          <label className="mb-1 block text-xs font-bold">メールアドレス</label>
+          <label className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-ink-soft">
+            メールアドレス
+          </label>
           <input
             type="email"
             value={email}
@@ -42,7 +44,9 @@ export default function LoginPage() {
           />
         </div>
         <div>
-          <label className="mb-1 block text-xs font-bold">パスワード</label>
+          <label className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-ink-soft">
+            パスワード
+          </label>
           <input
             type="password"
             value={password}
@@ -52,17 +56,25 @@ export default function LoginPage() {
           />
         </div>
         {error && (
-          <p className="rounded-lg bg-red-50 p-3 text-xs text-red-700">{error}</p>
+          <p className="rounded-xl bg-red-50 p-3 text-xs text-red-700">
+            {error}
+          </p>
         )}
         <button type="submit" disabled={loading} className="btn-primary w-full">
           {loading ? "ログイン中..." : "ログイン"}
         </button>
       </form>
       <div className="mt-6 flex items-center justify-between text-sm">
-        <Link href="/reset-password" className="text-brand-navy/70 hover:text-brand-pink">
+        <Link
+          href="/reset-password"
+          className="text-ink-muted hover:text-ink"
+        >
           パスワードをお忘れの方
         </Link>
-        <Link href="/register" className="font-bold text-brand-pink">
+        <Link
+          href="/register"
+          className="font-medium text-coral-500 hover:underline"
+        >
           新規登録
         </Link>
       </div>

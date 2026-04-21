@@ -8,40 +8,34 @@ export function ReviewCard({ review }: { review: Review }) {
   return (
     <article className="card">
       <header className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="badge badge-navy">{yearLabel}</span>
-          <span className="badge badge-pink">
+        <div className="flex items-center gap-1.5">
+          <span className="badge badge-ink">{yearLabel}</span>
+          <span
+            className={`badge ${
+              review.is_current_staff ? "badge-sage" : "badge-plum"
+            }`}
+          >
             {review.is_current_staff ? "現職" : "元職員"}
           </span>
         </div>
-        <time className="text-xs text-brand-navy/60">
+        <time className="text-[11px] tabular-nums text-ink-soft">
           {formatDate(review.created_at)}
         </time>
       </header>
 
-      <div className="mt-3 grid grid-cols-2 gap-y-2 text-sm sm:grid-cols-4">
-        <div>
-          <p className="text-[11px] text-brand-navy/60">人間関係</p>
-          <ScoreBadge score={review.score_human_relations} size="sm" />
-        </div>
-        <div>
-          <p className="text-[11px] text-brand-navy/60">忙しさ</p>
-          <ScoreBadge score={review.score_busyness} size="sm" />
-        </div>
-        <div>
-          <p className="text-[11px] text-brand-navy/60">教育体制</p>
-          <ScoreBadge score={review.score_education} size="sm" />
-        </div>
-        <div>
-          <p className="text-[11px] text-brand-navy/60">WLB</p>
-          <ScoreBadge score={review.score_work_life} size="sm" />
-        </div>
+      <div className="mt-4 grid grid-cols-2 gap-y-2.5 text-sm sm:grid-cols-4">
+        <Metric label="人間関係" score={review.score_human_relations} />
+        <Metric label="忙しさ" score={review.score_busyness} />
+        <Metric label="教育体制" score={review.score_education} />
+        <Metric label="WLB" score={review.score_work_life} />
       </div>
 
-      <div className="mt-3 flex flex-wrap gap-1.5">
-        <span className="badge badge-navy">残業 月{review.overtime_avg}h</span>
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        <span className="badge badge-ink tabular-nums">
+          残業 月{review.overtime_avg}h
+        </span>
         {review.overtime_paid ? (
-          <span className="badge badge-green">残業代あり</span>
+          <span className="badge badge-sage">残業代あり</span>
         ) : (
           <span className="badge badge-red">残業代なし</span>
         )}
@@ -51,9 +45,22 @@ export function ReviewCard({ review }: { review: Review }) {
         )}
       </div>
 
-      <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-brand-navy/90">
+      <p className="mt-5 whitespace-pre-line text-[15px] leading-relaxed text-ink/85">
         {review.body}
       </p>
     </article>
+  );
+}
+
+function Metric({ label, score }: { label: string; score: number }) {
+  return (
+    <div>
+      <p className="text-[10px] uppercase tracking-wider text-ink-soft">
+        {label}
+      </p>
+      <div className="mt-1">
+        <ScoreBadge score={score} size="sm" />
+      </div>
+    </div>
   );
 }

@@ -32,14 +32,14 @@ export default async function HospitalDetailPage({
     <div>
       <Link
         href="/search"
-        className="mb-4 inline-flex items-center gap-1 text-sm text-brand-navy/60 hover:text-brand-navy"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-ink-muted hover:text-ink"
       >
         ← 検索に戻る
       </Link>
 
       <section className="card">
-        <h1 className="text-2xl font-black">{hospital.name}</h1>
-        <div className="mt-3 grid gap-2 text-sm text-brand-navy/70 sm:grid-cols-2">
+        <h1 className="text-2xl font-medium tracking-tight">{hospital.name}</h1>
+        <div className="mt-3 grid gap-2 text-sm text-ink-muted sm:grid-cols-2">
           <p className="flex items-center gap-2">
             <MapPin className="h-4 w-4" />
             {hospital.prefecture} {hospital.address}
@@ -58,16 +58,16 @@ export default async function HospitalDetailPage({
           </p>
         </div>
         {hospital.description && (
-          <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-brand-navy/80">
+          <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-ink/85">
             {hospital.description}
           </p>
         )}
       </section>
 
       <section className="mt-8">
-        <h2 className="mb-4 text-lg font-black">所属病棟</h2>
+        <h2 className="mb-4 text-lg font-medium tracking-tight">所属病棟</h2>
         {summaries.length === 0 ? (
-          <p className="card text-sm text-brand-navy/60">病棟情報はまだありません。</p>
+          <p className="card text-sm text-ink-muted">病棟情報はまだありません。</p>
         ) : (
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {summaries.map((s) => (

@@ -20,8 +20,8 @@ export function HelpfulButton({ reviewId }: { reviewId: string }) {
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-bold transition",
         clicked
-          ? "border-brand-pink bg-brand-pink/10 text-brand-pink"
-          : "border-black/10 bg-white text-brand-navy/70 hover:bg-black/5"
+          ? "border-coral-500 bg-coral-100 text-coral-500"
+          : "border-black/10 bg-white text-ink-muted hover:bg-black/5"
       )}
     >
       <ThumbsUp className="h-3.5 w-3.5" />

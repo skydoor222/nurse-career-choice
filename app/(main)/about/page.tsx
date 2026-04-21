@@ -7,8 +7,8 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-2xl prose prose-sm">
-      <h1 className="text-3xl font-black">運営会社情報</h1>
-      <p className="text-sm text-brand-navy/70">
+      <h1 className="text-3xl font-medium tracking-tight">運営会社情報</h1>
+      <p className="text-sm text-ink-muted">
         NurseChoice は、看護学生・若手看護師の「入ってみたら想像と違った」を減らすため、
         病棟単位のリアルな情報を提供する、独立系のキャリアプラットフォームです。
       </p>
@@ -28,21 +28,21 @@ export default function AboutPage() {
         </Box>
       </div>
 
-      <h2 className="mt-10 text-xl font-black">会社概要</h2>
+      <h2 className="mt-10 text-xl font-medium tracking-tight">会社概要</h2>
       <dl className="mt-3 grid grid-cols-[max-content_1fr] gap-x-6 gap-y-3 text-sm">
-        <dt className="font-bold text-brand-navy/60">サービス名</dt>
+        <dt className="font-bold text-ink-muted">サービス名</dt>
         <dd>NurseChoice（ナースチョイス）</dd>
-        <dt className="font-bold text-brand-navy/60">運営</dt>
+        <dt className="font-bold text-ink-muted">運営</dt>
         <dd>[要確認: 運営主体 — 法人名もしくは個人事業主名]</dd>
-        <dt className="font-bold text-brand-navy/60">所在地</dt>
+        <dt className="font-bold text-ink-muted">所在地</dt>
         <dd>[要確認: 所在地]</dd>
-        <dt className="font-bold text-brand-navy/60">連絡先</dt>
+        <dt className="font-bold text-ink-muted">連絡先</dt>
         <dd>
-          <a href="mailto:support@nursechoice.example.com" className="text-brand-pink">
+          <a href="mailto:support@nursechoice.example.com" className="text-coral-500">
             support@nursechoice.example.com
           </a>
         </dd>
-        <dt className="font-bold text-brand-navy/60">設立</dt>
+        <dt className="font-bold text-ink-muted">設立</dt>
         <dd>[要確認: 2026年]</dd>
       </dl>
 
@@ -65,12 +65,12 @@ function Box({
 }) {
   return (
     <div className="not-prose flex gap-3 rounded-2xl border border-black/5 bg-white p-5">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-pink/10 text-brand-pink">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-coral-100 text-coral-500">
         {icon}
       </div>
       <div>
         <p className="font-bold">{title}</p>
-        <p className="mt-1 text-sm text-brand-navy/70">{children}</p>
+        <p className="mt-1 text-sm text-ink-muted">{children}</p>
       </div>
     </div>
   );

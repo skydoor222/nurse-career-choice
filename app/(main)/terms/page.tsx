@@ -3,8 +3,8 @@ export const metadata = { title: "利用規約 | NurseChoice" };
 export default function TermsPage() {
   return (
     <div className="mx-auto max-w-2xl prose prose-sm">
-      <h1 className="text-3xl font-black">利用規約</h1>
-      <p className="text-xs text-brand-navy/60">最終更新: 2026-04-22</p>
+      <h1 className="text-3xl font-medium tracking-tight">利用規約</h1>
+      <p className="text-xs text-ink-muted">最終更新: 2026-04-22</p>
 
       <h2>第1条（適用）</h2>
       <p>

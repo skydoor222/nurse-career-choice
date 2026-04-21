@@ -39,7 +39,7 @@ export function WardPhotoPlaceholder() {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="rounded-full bg-white/30 px-4 py-2 text-center backdrop-blur">
-            <div className="flex items-center justify-center gap-1 text-sm font-black text-white drop-shadow">
+            <div className="flex items-center justify-center gap-1 text-sm font-medium tracking-tight text-white drop-shadow">
               <Camera className="h-4 w-4" />
               {current.label}
             </div>
@@ -55,7 +55,7 @@ export function WardPhotoPlaceholder() {
         <button
           type="button"
           onClick={prev}
-          className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-brand-navy shadow backdrop-blur hover:bg-white"
+          className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-ink shadow backdrop-blur hover:bg-white"
           aria-label="前の写真"
         >
           <ChevronLeft className="h-5 w-5" />
@@ -63,7 +63,7 @@ export function WardPhotoPlaceholder() {
         <button
           type="button"
           onClick={next}
-          className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-brand-navy shadow backdrop-blur hover:bg-white"
+          className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-ink shadow backdrop-blur hover:bg-white"
           aria-label="次の写真"
         >
           <ChevronRight className="h-5 w-5" />
@@ -80,7 +80,7 @@ export function WardPhotoPlaceholder() {
           ))}
         </div>
       </div>
-      <p className="px-4 py-3 text-[11px] leading-relaxed text-brand-navy/60">
+      <p className="px-4 py-3 text-[11px] leading-relaxed text-ink-muted">
         ※ 写真はプライバシー保護のためサンプル画像です。公開承諾を得た一部の病棟は実写真を掲載します。
       </p>
     </div>

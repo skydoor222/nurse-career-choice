@@ -63,12 +63,12 @@ export default async function NotificationsPage() {
   return (
     <div>
       <header className="mb-6 flex items-center gap-2">
-        <Bell className="h-5 w-5 text-brand-pink" />
-        <h1 className="text-2xl font-black">通知</h1>
+        <Bell className="h-5 w-5 text-coral-500" />
+        <h1 className="text-2xl font-medium tracking-tight">通知</h1>
       </header>
 
       {items.length === 0 ? (
-        <p className="card text-center text-sm text-brand-navy/60">
+        <p className="card text-center text-sm text-ink-muted">
           新着の通知はありません。
         </p>
       ) : (
@@ -87,13 +87,13 @@ export default async function NotificationsPage() {
                   <XCircle className="h-5 w-5 text-red-500" />
                 )}
                 {it.kind === "new_review" && (
-                  <MessageSquarePlus className="h-5 w-5 text-brand-pink" />
+                  <MessageSquarePlus className="h-5 w-5 text-coral-500" />
                 )}
               </div>
               <div className="min-w-0 flex-1">
                 <p className="font-bold">{it.title}</p>
-                <p className="truncate text-xs text-brand-navy/70">{it.subtitle}</p>
-                <p className="mt-1 text-[11px] text-brand-navy/50">
+                <p className="truncate text-xs text-ink-muted">{it.subtitle}</p>
+                <p className="mt-1 text-[11px] text-ink-soft">
                   {formatDate(it.at)}
                 </p>
               </div>

@@ -81,15 +81,15 @@ export default async function WardDetailPage({
     <div>
       <Link
         href={`/hospitals/${hospital.id}`}
-        className="mb-4 inline-flex items-center gap-1 text-sm text-brand-navy/60 hover:text-brand-navy"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-ink-muted hover:text-ink"
       >
         ← {hospital.name} に戻る
       </Link>
 
       <section className="card">
-        <p className="text-xs text-brand-navy/60">{hospital.name}</p>
-        <h1 className="mt-1 text-2xl font-black">{ward.name}</h1>
-        <p className="mt-2 flex flex-wrap items-center gap-2 text-sm text-brand-navy/70">
+        <p className="text-xs text-ink-muted">{hospital.name}</p>
+        <h1 className="mt-1 text-2xl font-medium tracking-tight">{ward.name}</h1>
+        <p className="mt-2 flex flex-wrap items-center gap-2 text-sm text-ink-muted">
           <span className="badge badge-navy">{ward.department}</span>
           <span className="inline-flex items-center gap-1">
             <MapPin className="h-3.5 w-3.5" /> {hospital.prefecture}
@@ -99,7 +99,7 @@ export default async function WardDetailPage({
           </span>
         </p>
         {ward.description && (
-          <p className="mt-3 whitespace-pre-line text-sm text-brand-navy/80">
+          <p className="mt-3 whitespace-pre-line text-sm text-ink/85">
             {ward.description}
           </p>
         )}
@@ -128,7 +128,7 @@ export default async function WardDetailPage({
       <section className="mt-6">
         {hasEnoughData ? (
           <>
-            <h2 className="mb-3 text-lg font-black">
+            <h2 className="mb-3 text-lg font-medium tracking-tight">
               病棟スコア（6軸分析）
             </h2>
             <div className="card grid gap-6 md:grid-cols-2">
@@ -148,8 +148,8 @@ export default async function WardDetailPage({
                   value={String(Math.round(summary.avg_overtime))}
                   unit="時間/月"
                 />
-                <div className="rounded-xl bg-brand-bg p-3">
-                  <p className="text-[11px] font-bold text-brand-navy/60">
+                <div className="rounded-xl bg-canvas p-3">
+                  <p className="text-[11px] font-bold text-ink-muted">
                     お給料・残業代
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">
@@ -164,8 +164,8 @@ export default async function WardDetailPage({
                     </span>
                   </div>
                 </div>
-                <div className="rounded-xl bg-brand-bg p-3">
-                  <p className="text-[11px] font-bold text-brand-navy/60">
+                <div className="rounded-xl bg-canvas p-3">
+                  <p className="text-[11px] font-bold text-ink-muted">
                     お局・問題人物
                   </p>
                   <div className="mt-2">
@@ -184,7 +184,7 @@ export default async function WardDetailPage({
             </div>
           </>
         ) : (
-          <div className="card text-sm text-brand-navy/60">
+          <div className="card text-sm text-ink-muted">
             スコア分析にはレビューが3件以上必要です（現在{summary.review_count}件）
           </div>
         )}
@@ -193,24 +193,24 @@ export default async function WardDetailPage({
       {/* Pros / Cons */}
       {hasEnoughData && (
         <section className="mt-6">
-          <h2 className="mb-3 text-lg font-black">要約：良い点 / 注意点</h2>
+          <h2 className="mb-3 text-lg font-medium tracking-tight">要約：良い点 / 注意点</h2>
           <ProsCons reviews={reviews} />
         </section>
       )}
 
       {/* インターン情報 */}
       {internship && (
-        <section className="mt-6 rounded-2xl border border-brand-pink/30 bg-brand-pink/5 p-5">
+        <section className="mt-6 rounded-2xl border border-coral-300 bg-brand-pink/5 p-5">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-xs font-bold text-brand-pink">
+              <p className="text-xs font-bold text-coral-500">
                 1日体験シフト募集中
               </p>
               <p className="mt-1 font-bold">
                 {formatDate(internship.date)} {formatTime(internship.start_time)}〜
                 {formatTime(internship.end_time)}
               </p>
-              <p className="mt-1 text-xs text-brand-navy/60">
+              <p className="mt-1 text-xs text-ink-muted">
                 残り{internship.remaining}枠 / 定員{internship.capacity}
                 <span className="ml-2 inline-flex items-center gap-1">
                   <ShieldCheck className="h-3 w-3" />
@@ -228,13 +228,13 @@ export default async function WardDetailPage({
       {/* レビュー */}
       <section className="mt-8">
         <div className="mb-4">
-          <h2 className="text-lg font-black">
+          <h2 className="text-lg font-medium tracking-tight">
             口コミ・レビュー{" "}
-            <span className="text-sm font-normal text-brand-navy/60">
+            <span className="text-sm font-normal text-ink-muted">
               ({reviews.length}件)
             </span>
           </h2>
-          <p className="mt-1 text-xs text-brand-navy/60">
+          <p className="mt-1 text-xs text-ink-muted">
             投稿は全て匿名。在職/元職員の確認済みバッジ付き。
           </p>
         </div>
@@ -270,18 +270,18 @@ function KeyStat({
   note?: string;
 }) {
   return (
-    <div className="rounded-xl bg-brand-bg p-3">
+    <div className="rounded-xl bg-canvas p-3">
       <div className="flex items-center gap-2">
-        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-navy text-[10px] font-black text-white">
+        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-medium tracking-tight text-white">
           {rank}
         </span>
-        <p className="text-[11px] font-bold text-brand-navy/60">{label}</p>
+        <p className="text-[11px] font-bold text-ink-muted">{label}</p>
       </div>
       <p className="mt-2 flex items-baseline gap-1">
-        <span className="text-2xl font-black">{value}</span>
-        <span className="text-xs text-brand-navy/60">{unit}</span>
+        <span className="text-2xl font-medium tracking-tight">{value}</span>
+        <span className="text-xs text-ink-muted">{unit}</span>
       </p>
-      {note && <p className="mt-0.5 text-[10px] text-brand-pink">{note}</p>}
+      {note && <p className="mt-0.5 text-[10px] text-coral-500">{note}</p>}
     </div>
   );
 }

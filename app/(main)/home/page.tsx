@@ -41,7 +41,6 @@ export default async function HomePage() {
     .order("created_at", { ascending: false })
     .limit(3);
 
-  // 診断結果の有無
   const { data: lastResult } = await sb
     .from("matching_results")
     .select("id, created_at")
@@ -51,21 +50,36 @@ export default async function HomePage() {
   const hasDiagnosed = !!lastResult?.[0];
 
   return (
-    <div className="space-y-12 pb-4">
-      {/* ヒーロー */}
-      <section>
-        <p className="text-xs text-brand-navy/60">
-          こんにちは、{profile.display_name}さん
+    <div className="space-y-20 pb-6">
+      {/* Hero greeting */}
+      <section className="pt-2 md:pt-6">
+        <p className="text-[13px] text-ink-muted">
+          ようこそ、{profile.display_name}さん
         </p>
-        <h1 className="mt-1 text-3xl font-black leading-tight md:text-4xl">
-          {hasDiagnosed
-            ? "今日も、あなたに合う\n病棟を探そう。"
-            : "まずは、相性診断から\nはじめませんか？"}
+        <h1 className="mt-2 max-w-3xl text-display-lg font-medium leading-[1.05]">
+          {hasDiagnosed ? (
+            <>
+              今日も、あなたに合う
+              <br />
+              病棟を
+              <span className="font-display italic text-gradient-brand">
+                探そう。
+              </span>
+            </>
+          ) : (
+            <>
+              まずは、
+              <span className="font-display italic text-gradient-brand">
+                相性診断
+              </span>
+              から。
+            </>
+          )}
         </h1>
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-8 flex flex-wrap gap-3">
           {!hasDiagnosed && (
             <Link href="/matching" className="btn-primary">
-              <Sparkles className="h-4 w-4" />
+              <Sparkles className="h-4 w-4" strokeWidth={2} />
               10問・2分で診断する
             </Link>
           )}
@@ -74,35 +88,36 @@ export default async function HomePage() {
             className={hasDiagnosed ? "btn-primary" : "btn-secondary"}
           >
             病棟を探す
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4" strokeWidth={2} />
           </Link>
         </div>
       </section>
 
-      {/* トップピック（大判カード） */}
+      {/* 今週の注目 */}
       <section>
-        <div className="mb-4 flex items-end justify-between">
+        <div className="mb-6 flex items-end justify-between">
           <div>
-            <p className="inline-flex items-center gap-1 text-xs font-bold text-brand-pink">
-              <TrendingUp className="h-3.5 w-3.5" />
+            <span className="eyebrow">
+              <TrendingUp className="h-3 w-3 text-coral-500" strokeWidth={2} />
               今週の注目
-            </p>
-            <h2 className="mt-1 text-xl font-black">
+            </span>
+            <h2 className="mt-3 text-display-md font-medium tracking-tight">
               {profile.preferred_prefecture
                 ? `${profile.preferred_prefecture}で評価の高い病棟`
                 : "評価の高い病棟"}
             </h2>
           </div>
-          <Link href="/search" className="text-xs font-bold text-brand-pink">
-            すべて見る →
+          <Link href="/search" className="btn-ghost text-[13px]">
+            すべて見る
+            <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
           </Link>
         </div>
         {topPicks.length === 0 ? (
-          <p className="card text-sm text-brand-navy/60">
+          <p className="card text-sm text-ink-muted">
             該当する病棟がまだありません。希望エリアを変更してみてください。
           </p>
         ) : (
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {topPicks.map((w) => (
               <WardCard key={w.ward.id} summary={w} />
             ))}
@@ -110,50 +125,58 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* 3機能導線（シンプルな大判） */}
+      {/* 3機能 */}
       <section>
-        <h2 className="mb-4 text-xl font-black">3つの機能で選ぶ</h2>
-        <div className="grid gap-3 md:grid-cols-3">
+        <h2 className="mb-6 text-display-md font-medium tracking-tight">
+          3つの機能で選ぶ
+        </h2>
+        <div className="grid gap-4 md:grid-cols-3">
           <BigFeatureCard
             href="/search"
-            icon={<Heart className="h-6 w-6" />}
+            num="01"
             title="病棟レビュー"
             desc="現場のリアルを病棟単位で。"
-            color="pink"
+            accent="coral"
           />
           <BigFeatureCard
             href="/internships"
-            icon={<Calendar className="h-6 w-6" />}
+            num="02"
             title="1日体験インターン"
             desc="看護助手としてバイト感覚で。"
-            color="navy"
+            accent="ink"
           />
           <BigFeatureCard
             href="/matching"
-            icon={<Sparkles className="h-6 w-6" />}
+            num="03"
             title="相性マッチング"
             desc="10問診断で合う病棟が分かる。"
-            color="pink"
+            accent="plum"
           />
         </div>
       </section>
 
-      {/* 新着レビュー（簡潔に） */}
+      {/* 新着レビュー */}
       {recentReviews && recentReviews.length > 0 && (
         <section>
-          <h2 className="mb-4 text-xl font-black">最近の新着レビュー</h2>
-          <div className="grid gap-3 md:grid-cols-3">
+          <h2 className="mb-6 text-display-md font-medium tracking-tight">
+            最近の新着レビュー
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
             {recentReviews.map((r: any) => (
-              <Link key={r.id} href={`/wards/${r.ward_id}`} className="card block">
-                <p className="text-xs text-brand-navy/60">
+              <Link
+                key={r.id}
+                href={`/wards/${r.ward_id}`}
+                className="card card-hoverable block"
+              >
+                <p className="text-[11px] text-ink-muted">
                   {r.ward?.hospital?.name} · {r.ward?.name}
                 </p>
-                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-brand-navy/80">
+                <p className="mt-3 line-clamp-3 text-[14px] leading-relaxed text-ink/80">
                   {r.body}
                 </p>
-                <p className="mt-3 flex items-center gap-1 text-xs text-brand-navy/60">
-                  <Clock className="h-3 w-3" />
-                  月{r.overtime_avg}時間残業
+                <p className="mt-4 inline-flex items-center gap-1 text-[11px] text-ink-soft tabular-nums">
+                  <Clock className="h-3 w-3" strokeWidth={1.5} />月
+                  {r.overtime_avg}時間残業
                 </p>
               </Link>
             ))}
@@ -166,47 +189,40 @@ export default async function HomePage() {
 
 function BigFeatureCard({
   href,
-  icon,
+  num,
   title,
   desc,
-  color,
+  accent,
 }: {
   href: string;
-  icon: React.ReactNode;
+  num: string;
   title: string;
   desc: string;
-  color: "pink" | "navy";
+  accent: "coral" | "ink" | "plum";
 }) {
+  const accentMap = {
+    coral: "text-coral-500",
+    ink: "text-ink",
+    plum: "text-plum-500",
+  };
   return (
     <Link
       href={href}
-      className={`group flex flex-col gap-3 rounded-2xl p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${
-        color === "pink"
-          ? "bg-gradient-to-br from-brand-pink/10 to-brand-pink/5 hover:from-brand-pink/15"
-          : "bg-gradient-to-br from-brand-navy/5 to-brand-navy/10 hover:from-brand-navy/10"
-      }`}
+      className="card card-hoverable group flex flex-col gap-4"
     >
-      <div
-        className={`flex h-14 w-14 items-center justify-center rounded-2xl ${
-          color === "pink"
-            ? "bg-brand-pink text-white"
-            : "bg-brand-navy text-white"
-        }`}
-      >
-        {icon}
+      <div className="flex items-start justify-between">
+        <span className={`font-display text-4xl italic ${accentMap[accent]}`}>
+          {num}
+        </span>
+        <ArrowRight
+          className="h-4 w-4 text-ink-soft transition group-hover:translate-x-1 group-hover:text-ink"
+          strokeWidth={1.5}
+        />
       </div>
       <div>
-        <h3 className="text-lg font-black">{title}</h3>
-        <p className="mt-1 text-sm text-brand-navy/70">{desc}</p>
+        <h3 className="text-lg font-medium tracking-tight">{title}</h3>
+        <p className="mt-1.5 text-[14px] text-ink-muted">{desc}</p>
       </div>
-      <p
-        className={`mt-auto flex items-center gap-1 text-sm font-bold ${
-          color === "pink" ? "text-brand-pink" : "text-brand-navy"
-        }`}
-      >
-        開く
-        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-      </p>
     </Link>
   );
 }

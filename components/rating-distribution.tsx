@@ -31,7 +31,7 @@ export function RatingDistribution({
     <div className="card">
       <div className="flex items-start gap-5">
         <div className="text-center">
-          <div className="text-4xl font-black text-brand-navy">
+          <div className="text-4xl font-medium tracking-tight text-ink">
             {avg.toFixed(1)}
           </div>
           <div className="mt-1 flex justify-center">
@@ -47,7 +47,7 @@ export function RatingDistribution({
               />
             ))}
           </div>
-          <div className="mt-1 text-[11px] text-brand-navy/60">
+          <div className="mt-1 text-[11px] text-ink-muted">
             {total}件の評価
           </div>
         </div>
@@ -63,10 +63,10 @@ export function RatingDistribution({
                 className={cn(
                   "group flex w-full items-center gap-2 rounded-lg px-2 py-1 text-xs transition",
                   onFilter && "hover:bg-black/5",
-                  active && "bg-brand-pink/10"
+                  active && "bg-coral-100"
                 )}
               >
-                <span className="flex w-6 items-center gap-0.5 font-bold text-brand-navy/70">
+                <span className="flex w-6 items-center gap-0.5 font-bold text-ink-muted">
                   {b.star}
                   <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                 </span>
@@ -74,12 +74,12 @@ export function RatingDistribution({
                   <span
                     className={cn(
                       "block h-full rounded-full transition-all",
-                      active ? "bg-brand-pink" : "bg-amber-400"
+                      active ? "bg-coral-500" : "bg-amber-400"
                     )}
                     style={{ width: `${b.pct}%` }}
                   />
                 </span>
-                <span className="w-8 text-right font-bold tabular-nums text-brand-navy/70">
+                <span className="w-8 text-right font-bold tabular-nums text-ink-muted">
                   {b.count}
                 </span>
               </button>
@@ -92,7 +92,7 @@ export function RatingDistribution({
         <button
           type="button"
           onClick={() => onFilter(null)}
-          className="mt-3 w-full rounded-lg bg-black/5 py-2 text-xs font-bold text-brand-navy/70 hover:bg-black/10"
+          className="mt-3 w-full rounded-lg bg-black/5 py-2 text-xs font-bold text-ink-muted hover:bg-black/10"
         >
           フィルタ解除（すべてのレビューを表示）
         </button>

@@ -53,13 +53,13 @@ export function ProsCons({ reviews }: { reviews: Review[] }) {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
             <ThumbsUp className="h-3.5 w-3.5" />
           </div>
-          <p className="text-xs font-bold text-brand-navy/70">
+          <p className="text-xs font-bold text-ink-muted">
             良い点（レビュー傾向）
           </p>
         </div>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {pros.length === 0 ? (
-            <p className="text-xs text-brand-navy/50">
+            <p className="text-xs text-ink-soft">
               データからは特筆すべき強みが見つかりませんでした
             </p>
           ) : (
@@ -77,13 +77,13 @@ export function ProsCons({ reviews }: { reviews: Review[] }) {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 text-amber-700">
             <AlertTriangle className="h-3.5 w-3.5" />
           </div>
-          <p className="text-xs font-bold text-brand-navy/70">
+          <p className="text-xs font-bold text-ink-muted">
             注意点（レビュー傾向）
           </p>
         </div>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {cons.length === 0 ? (
-            <p className="text-xs text-brand-navy/50">
+            <p className="text-xs text-ink-soft">
               大きな懸念点は見られませんでした
             </p>
           ) : (

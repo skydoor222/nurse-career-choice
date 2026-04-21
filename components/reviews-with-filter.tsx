@@ -36,7 +36,7 @@ export function ReviewsWithFilter({ reviews }: { reviews: Review[] }) {
       />
 
       <div className="mt-4 flex items-center justify-between">
-        <p className="text-sm font-bold text-brand-navy/70">
+        <p className="text-sm font-bold text-ink-muted">
           {rating !== null
             ? `★${rating}のレビュー ${filtered.length}件`
             : `すべてのレビュー ${filtered.length}件`}
@@ -53,7 +53,7 @@ export function ReviewsWithFilter({ reviews }: { reviews: Review[] }) {
 
       <div className="mt-4 space-y-3">
         {filtered.length === 0 ? (
-          <p className="card text-center text-sm text-brand-navy/60">
+          <p className="card text-center text-sm text-ink-muted">
             このフィルタに該当するレビューはありません
           </p>
         ) : (

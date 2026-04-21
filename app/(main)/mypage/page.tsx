@@ -70,23 +70,23 @@ export default async function MyPage({
     <div>
       <header className="card mb-6 flex items-center justify-between">
         <div>
-          <p className="text-xs text-brand-navy/60">
+          <p className="text-xs text-ink-muted">
             {profile?.user_type === "student" ? "看護学生" : "看護師"}
           </p>
-          <h1 className="text-xl font-black">
+          <h1 className="text-xl font-medium tracking-tight">
             {profile?.display_name ?? "ゲスト"}
           </h1>
-          <p className="mt-1 text-xs text-brand-navy/60">
+          <p className="mt-1 text-xs text-ink-muted">
             {profile?.preferred_prefecture ?? "希望エリア未設定"}
             {profile?.school_name ? ` · ${profile.school_name}` : ""}
           </p>
         </div>
         <div className="flex flex-col items-end gap-2">
-          <Link href="/profile/setup" className="text-xs font-bold text-brand-pink">
+          <Link href="/profile/setup" className="text-xs font-bold text-coral-500">
             プロフィール編集
           </Link>
           <form action={signOut}>
-            <button className="inline-flex items-center gap-1 text-xs text-brand-navy/60 hover:text-brand-navy">
+            <button className="inline-flex items-center gap-1 text-xs text-ink-muted hover:text-ink">
               <LogOut className="h-3 w-3" />
               ログアウト
             </button>
@@ -111,11 +111,11 @@ export default async function MyPage({
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-xs text-brand-navy/60">
+                    <p className="text-xs text-ink-muted">
                       {b.internship?.ward?.hospital?.name}
                     </p>
                     <p className="font-bold">{b.internship?.ward?.name}</p>
-                    <p className="mt-2 flex items-center gap-3 text-xs text-brand-navy/70">
+                    <p className="mt-2 flex items-center gap-3 text-xs text-ink-muted">
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         {b.internship?.date && formatDate(b.internship.date)}
@@ -132,7 +132,7 @@ export default async function MyPage({
               </Link>
             ))
           ) : (
-            <p className="card text-center text-sm text-brand-navy/60">
+            <p className="card text-center text-sm text-ink-muted">
               まだ応募履歴がありません。
             </p>
           )}
@@ -142,7 +142,7 @@ export default async function MyPage({
       {tab === "favorites" && (
         <>
           {favSummaries.length === 0 ? (
-            <p className="card text-center text-sm text-brand-navy/60">
+            <p className="card text-center text-sm text-ink-muted">
               お気に入りの病棟はまだありません。
             </p>
           ) : (
@@ -166,16 +166,16 @@ export default async function MyPage({
               >
                 <div>
                   <p className="font-bold">診断結果</p>
-                  <p className="text-xs text-brand-navy/60">
+                  <p className="text-xs text-ink-muted">
                     {formatDate(r.created_at)}
                   </p>
                 </div>
-                <span className="text-xs font-bold text-brand-pink">再表示 →</span>
+                <span className="text-xs font-bold text-coral-500">再表示 →</span>
               </Link>
             ))
           ) : (
             <div className="card text-center">
-              <p className="text-sm text-brand-navy/60">まだ診断履歴がありません。</p>
+              <p className="text-sm text-ink-muted">まだ診断履歴がありません。</p>
               <Link href="/matching" className="btn-primary mt-4 inline-flex">
                 診断を受ける
               </Link>
@@ -204,8 +204,8 @@ function TabLink({
       href={`/mypage?tab=${tab}`}
       className={`flex items-center gap-1 border-b-2 px-3 py-2 text-sm font-bold ${
         active
-          ? "border-brand-pink text-brand-pink"
-          : "border-transparent text-brand-navy/60 hover:text-brand-navy"
+          ? "border-coral-500 text-coral-500"
+          : "border-transparent text-ink-muted hover:text-ink"
       }`}
     >
       {icon}

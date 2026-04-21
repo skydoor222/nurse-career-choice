@@ -49,9 +49,11 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="card">
-      <h1 className="text-2xl font-black">無料登録</h1>
-      <p className="mt-2 text-sm text-brand-navy/70">
+    <div className="card-solid">
+      <h1 className="text-display-md font-medium tracking-tight">
+        無料登録
+      </h1>
+      <p className="mt-2 text-sm text-ink-muted">
         学生・看護師は完全無料。登録30秒で全レビューが読めます。
       </p>
 
@@ -65,10 +67,10 @@ export default function RegisterPage() {
               key={o.value}
               type="button"
               onClick={() => setUserType(o.value as UserType)}
-              className={`rounded-xl border px-3 py-3 text-sm font-bold transition ${
+              className={`rounded-2xl border px-3 py-3 text-sm font-medium transition ${
                 userType === o.value
-                  ? "border-brand-pink bg-brand-pink/10 text-brand-pink"
-                  : "border-black/10 bg-white text-brand-navy/70"
+                  ? "border-ink bg-ink text-canvas"
+                  : "border-hairline bg-white text-ink-muted hover:border-ink/30 hover:text-ink"
               }`}
             >
               {o.label}
@@ -77,7 +79,9 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-xs font-bold">メールアドレス</label>
+          <label className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-ink-soft">
+            メールアドレス
+          </label>
           <input
             type="email"
             value={email}
@@ -89,8 +93,8 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-xs font-bold">
-            パスワード（8文字以上）
+          <label className="mb-1.5 block text-[11px] font-medium uppercase tracking-wider text-ink-soft">
+            パスワード (8文字以上)
           </label>
           <input
             type="password"
@@ -103,7 +107,9 @@ export default function RegisterPage() {
         </div>
 
         {error && (
-          <p className="rounded-lg bg-red-50 p-3 text-xs text-red-700">{error}</p>
+          <p className="rounded-xl bg-red-50 p-3 text-xs text-red-700">
+            {error}
+          </p>
         )}
 
         <button type="submit" disabled={loading} className="btn-primary w-full">
@@ -111,9 +117,9 @@ export default function RegisterPage() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-brand-navy/70">
+      <p className="mt-6 text-center text-sm text-ink-muted">
         すでにアカウントをお持ちの方は{" "}
-        <Link href="/login" className="font-bold text-brand-pink">
+        <Link href="/login" className="font-medium text-coral-500 hover:underline">
           ログイン
         </Link>
       </p>

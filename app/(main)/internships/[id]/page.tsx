@@ -60,16 +60,16 @@ export default async function InternshipDetail({
     <div>
       <Link
         href="/internships"
-        className="mb-4 inline-flex items-center gap-1 text-sm text-brand-navy/60 hover:text-brand-navy"
+        className="mb-4 inline-flex items-center gap-1 text-sm text-ink-muted hover:text-ink"
       >
         ← 体験枠一覧に戻る
       </Link>
 
       <section className="card">
-        <p className="text-xs text-brand-navy/60">{it.ward?.hospital?.name}</p>
-        <h1 className="mt-1 text-2xl font-black">{it.ward?.name}</h1>
+        <p className="text-xs text-ink-muted">{it.ward?.hospital?.name}</p>
+        <h1 className="mt-1 text-2xl font-medium tracking-tight">{it.ward?.name}</h1>
 
-        <div className="mt-4 grid gap-2 text-sm text-brand-navy/80">
+        <div className="mt-4 grid gap-2 text-sm text-ink/85">
           <p className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             {formatDate(it.date)}
@@ -85,7 +85,7 @@ export default async function InternshipDetail({
           <p className="flex items-center gap-2">
             <Users className="h-4 w-4" />
             定員{it.capacity}名 / 残り
-            <span className={soldOut ? "font-bold text-red-600" : "font-bold text-brand-pink"}>
+            <span className={soldOut ? "font-bold text-red-600" : "font-bold text-coral-500"}>
               {it.remaining}枠
             </span>
           </p>
@@ -100,15 +100,15 @@ export default async function InternshipDetail({
             <Shirt className="mx-auto h-4 w-4" />
             <p className="mt-1 font-bold">ユニフォーム貸出</p>
           </div>
-          <div className="rounded-xl bg-brand-pink/10 px-3 py-2 text-center text-brand-pink">
+          <div className="rounded-xl bg-coral-100 px-3 py-2 text-center text-coral-500">
             <ShieldCheck className="mx-auto h-4 w-4" />
             <p className="mt-1 font-bold">資格不要</p>
           </div>
         </div>
 
         {it.description && (
-          <div className="mt-5 rounded-xl bg-brand-bg p-4">
-            <p className="mb-1 text-xs font-bold text-brand-navy/70">
+          <div className="mt-5 rounded-xl bg-canvas p-4">
+            <p className="mb-1 text-xs font-bold text-ink-muted">
               病院からのメッセージ
             </p>
             <p className="whitespace-pre-line text-sm leading-relaxed">
@@ -144,7 +144,7 @@ export default async function InternshipDetail({
       <section className="mt-6 grid gap-3 md:grid-cols-2">
         <div className="card">
           <h2 className="font-bold text-emerald-700">✓ 当日やること</h2>
-          <p className="mt-1 text-xs text-brand-navy/60">
+          <p className="mt-1 text-xs text-ink-muted">
             看護助手として、以下の業務をサポートします。
           </p>
           <ul className="mt-3 space-y-1.5 text-sm">
@@ -159,12 +159,12 @@ export default async function InternshipDetail({
 
         <div className="card">
           <h2 className="font-bold text-red-700">✗ やらないこと</h2>
-          <p className="mt-1 text-xs text-brand-navy/60">
+          <p className="mt-1 text-xs text-ink-muted">
             医療行為は一切ありません。資格不要で安心して参加できます。
           </p>
           <ul className="mt-3 space-y-1.5 text-sm">
             {NG_TASKS.map((t) => (
-              <li key={t} className="flex items-start gap-2 text-brand-navy/70">
+              <li key={t} className="flex items-start gap-2 text-ink-muted">
                 <span className="mt-1 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-red-400" />
                 <span>{t}</span>
               </li>
@@ -175,39 +175,39 @@ export default async function InternshipDetail({
 
       <section className="mt-6 card">
         <h2 className="font-bold">当日の流れ</h2>
-        <ol className="mt-3 space-y-2 text-sm text-brand-navy/80">
+        <ol className="mt-3 space-y-2 text-sm text-ink/85">
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               1
             </span>
             受付で学生証を提示→着替え
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               2
             </span>
             病棟師長から業務説明（15分）
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               3
             </span>
             先輩看護師とペアで環境整備・配膳などサポート
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               4
             </span>
             休憩時間に看護師さんと雑談、質問タイム
           </li>
           <li className="flex gap-3">
-            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-pink/10 text-xs font-black text-brand-pink">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               5
             </span>
             終了後、任意で感想フィードバック
           </li>
         </ol>
-        <p className="mt-4 text-[11px] text-brand-navy/60">
+        <p className="mt-4 text-[11px] text-ink-muted">
           ※ 動きやすい服装でお越しください。ユニフォームと靴は病院が貸出します。
         </p>
       </section>
