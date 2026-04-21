@@ -1,7 +1,5 @@
 import Link from "next/link";
 import {
-  Heart,
-  Calendar,
   Sparkles,
   ArrowRight,
   Clock,
@@ -50,47 +48,48 @@ export default async function HomePage() {
   const hasDiagnosed = !!lastResult?.[0];
 
   return (
-    <div className="space-y-20 pb-6">
+    <div className="space-y-14 pb-6">
       {/* Hero greeting */}
       <section className="pt-2 md:pt-6">
-        <p className="text-[13px] text-ink-muted">
-          ようこそ、{profile.display_name}さん
-        </p>
-        <h1 className="mt-2 max-w-3xl text-display-lg font-medium leading-[1.05]">
-          {hasDiagnosed ? (
-            <>
-              今日も、あなたに合う
-              <br />
-              病棟を
-              <span className="font-display italic text-gradient-brand">
-                探そう。
-              </span>
-            </>
-          ) : (
-            <>
-              まずは、
-              <span className="font-display italic text-gradient-brand">
-                相性診断
-              </span>
-              から。
-            </>
-          )}
+        <p className="text-[12px] text-ink-muted">おかえりなさい</p>
+        <h1 className="mt-1 max-w-3xl text-[28px] font-extrabold leading-[1.2] tracking-[-0.03em]">
+          あなたに合う
+          <span className="text-gradient-brand">病棟</span>
+          を見つけよう
         </h1>
-        <div className="mt-8 flex flex-wrap gap-3">
-          {!hasDiagnosed && (
-            <Link href="/matching" className="btn-primary">
-              <Sparkles className="h-4 w-4" strokeWidth={2} />
-              10問・2分で診断する
-            </Link>
-          )}
-          <Link
-            href="/search"
-            className={hasDiagnosed ? "btn-primary" : "btn-secondary"}
-          >
-            病棟を探す
-            <ArrowRight className="h-4 w-4" strokeWidth={2} />
-          </Link>
-        </div>
+
+        {/* Matching CTA Card */}
+        <Link href="/matching" className="mt-4 block rounded-3xl p-[18px] transition hover:opacity-90"
+          style={{
+            background: "linear-gradient(135deg, rgba(255,107,107,.08), rgba(124,92,255,.08))",
+            border: "1px solid rgba(255,107,107,.20)",
+          }}>
+          <div className="flex items-start gap-4">
+            <div className="flex-1 min-w-0">
+              <p className="inline-flex items-center gap-1 text-[11px] font-bold text-coral-500">
+                <Sparkles className="h-3.5 w-3.5" />
+                相性診断
+              </p>
+              <h2 className="mt-1 text-[16px] font-bold leading-snug tracking-tight">
+                10問・2分でちょうどあなたに合う病棟を発見
+              </h2>
+              <p className="mt-1 text-[12px] text-ink-muted">
+                {hasDiagnosed ? "診断済み — もう一度試す" : "まだ診断していません"}
+              </p>
+            </div>
+            <div
+              className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full"
+              style={{ background: "linear-gradient(135deg, #ff6b6b, #7c5cff)" }}
+            >
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+          </div>
+          <div className="mt-3 flex items-center justify-center gap-1.5 rounded-xl py-2.5 text-[13px] font-bold text-coral-500"
+            style={{ background: "rgba(255,107,107,.10)" }}>
+            診断を始める
+            <ArrowRight className="h-4 w-4" />
+          </div>
+        </Link>
       </section>
 
       {/* 今週の注目 */}

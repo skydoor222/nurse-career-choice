@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, Sparkles, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, X, Check } from "lucide-react";
 import { QUESTIONS } from "@/lib/matching";
 import { createBrowser } from "@/lib/supabase-client";
 import { cn } from "@/lib/utils";
@@ -154,8 +154,11 @@ export default function MatchingPage() {
             </div>
             <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-black/5">
               <div
-                className="h-full rounded-full bg-coral-500 transition-all duration-300"
-                style={{ width: `${progress}%` }}
+                className="h-full rounded-full transition-all duration-300"
+                style={{
+                  width: `${progress}%`,
+                  background: "linear-gradient(90deg, #ff6b6b, #7c5cff)",
+                }}
               />
             </div>
           </div>
@@ -179,22 +182,39 @@ export default function MatchingPage() {
                   type="button"
                   onClick={() => choose(o.value)}
                   className={cn(
-                    "group flex items-center justify-between rounded-2xl border-2 bg-white px-5 py-4 text-left font-bold transition-all",
+                    "group flex w-full items-center gap-3.5 rounded-2xl border-2 px-5 py-4 text-left transition-all",
                     selected
-                      ? "border-coral-500 bg-coral-100 text-coral-500"
-                      : "border-transparent text-ink hover:border-coral-300 hover:shadow-md"
+                      ? "scale-[1.01] border-coral-500 bg-coral-50"
+                      : "border-transparent bg-white hover:border-coral-300 hover:shadow-md"
                   )}
                 >
-                  <span>{o.label}</span>
+                  {o.icon && (
+                    <span className="shrink-0 text-[28px] leading-none">{o.icon}</span>
+                  )}
+                  <div className="flex-1">
+                    <span
+                      className={cn(
+                        "block text-[15px] font-bold",
+                        selected ? "text-coral-500" : "text-ink"
+                      )}
+                    >
+                      {o.label}
+                    </span>
+                    {o.sub && (
+                      <span className="mt-0.5 block text-[11px] text-ink-muted">
+                        {o.sub}
+                      </span>
+                    )}
+                  </div>
                   <span
                     className={cn(
-                      "flex h-6 w-6 items-center justify-center rounded-full border-2 transition",
+                      "flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border-2 transition",
                       selected
-                        ? "border-coral-500 bg-coral-500 text-white"
+                        ? "border-coral-500 bg-coral-500"
                         : "border-hairline group-hover:border-coral-300"
                     )}
                   >
-                    {selected ? "✓" : ""}
+                    {selected && <Check className="h-3 w-3 text-white" />}
                   </span>
                 </button>
               );
