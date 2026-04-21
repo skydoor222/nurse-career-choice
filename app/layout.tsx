@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { Instrument_Serif, Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -7,13 +7,6 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-display-en",
-  display: "swap",
-});
-
-const notoSerifJp = Noto_Serif_JP({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-display-jp",
   display: "swap",
 });
 
@@ -44,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${instrumentSerif.variable} ${notoSerifJp.variable} ${notoSansJp.variable}`}
+      className={`${instrumentSerif.variable} ${notoSansJp.variable}`}
     >
       <body className="min-h-screen bg-canvas text-ink">{children}</body>
     </html>
