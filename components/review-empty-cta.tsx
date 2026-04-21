@@ -1,3 +1,5 @@
+"use client";
+
 import { MessageSquarePlus, Lock } from "lucide-react";
 
 export function ReviewEmptyCTA({ count }: { count: number }) {
@@ -7,7 +9,7 @@ export function ReviewEmptyCTA({ count }: { count: number }) {
   if (count >= 5) return null;
 
   return (
-    <div className="rounded-2xl border-2 border-dashed border-coral-300 bg-brand-pink/5 p-6 text-center">
+    <div className="rounded-2xl border-2 border-dashed border-coral-300 bg-coral-50/60 p-6 text-center">
       <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-coral-100 text-coral-500">
         <MessageSquarePlus className="h-6 w-6" />
       </div>

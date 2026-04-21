@@ -200,7 +200,7 @@ export default async function WardDetailPage({
 
       {/* インターン情報 */}
       {internship && (
-        <section className="mt-6 rounded-2xl border border-coral-300 bg-brand-pink/5 p-5">
+        <section className="mt-6 rounded-2xl border border-coral-300 bg-coral-50/60 p-5">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs font-bold text-coral-500">
