@@ -6,7 +6,6 @@ import {
   MapPin,
   Users,
   ChevronRight,
-  Shirt,
   Wallet,
   ShieldCheck,
 } from "lucide-react";
@@ -22,7 +21,7 @@ const HELPER_TASKS = [
   "病棟内の物品補充",
   "患者さんの配膳・下膳の補助",
   "清掃・消毒のサポート",
-  "看護師さんへのちょっとした声かけ・伝達",
+  "スタッフへの情報伝達・声かけ",
 ];
 
 const NG_TASKS = [
@@ -94,11 +93,11 @@ export default async function InternshipDetail({
         <div className="mt-4 grid grid-cols-3 gap-2 text-[11px]">
           <div className="rounded-xl bg-emerald-50 px-3 py-2 text-center text-emerald-700">
             <Wallet className="mx-auto h-4 w-4" />
-            <p className="mt-1 font-bold">時給あり</p>
+            <p className="mt-1 font-bold">参加費無料</p>
           </div>
           <div className="rounded-xl bg-blue-50 px-3 py-2 text-center text-blue-700">
-            <Shirt className="mx-auto h-4 w-4" />
-            <p className="mt-1 font-bold">ユニフォーム貸出</p>
+            <ShieldCheck className="mx-auto h-4 w-4" />
+            <p className="mt-1 font-bold">事前面接なし</p>
           </div>
           <div className="rounded-xl bg-coral-100 px-3 py-2 text-center text-coral-500">
             <ShieldCheck className="mx-auto h-4 w-4" />
@@ -120,15 +119,15 @@ export default async function InternshipDetail({
         <div className="mt-5 flex flex-wrap gap-2">
           {alreadyApplied ? (
             <span className="btn-secondary cursor-not-allowed">
-              応募済み（マイページから確認）
+              申込済み（マイページから確認）
             </span>
           ) : soldOut ? (
             <button disabled className="btn-secondary cursor-not-allowed opacity-60">
-              残り0枠のため応募できません
+              残り0枠のため申込できません
             </button>
           ) : (
             <Link href={`/internships/${it.id}/apply`} className="btn-primary">
-              この体験に応募する（30秒）
+              この病棟の体験を申し込む
             </Link>
           )}
 
@@ -143,7 +142,7 @@ export default async function InternshipDetail({
 
       <section className="mt-6 grid gap-3 md:grid-cols-2">
         <div className="card">
-          <h2 className="font-bold text-emerald-700">✓ 当日やること</h2>
+          <h2 className="font-bold text-emerald-700">✓ 当日の業務内容</h2>
           <p className="mt-1 text-xs text-ink-muted">
             看護助手として、以下の業務をサポートします。
           </p>
@@ -158,9 +157,9 @@ export default async function InternshipDetail({
         </div>
 
         <div className="card">
-          <h2 className="font-bold text-red-700">✗ やらないこと</h2>
+          <h2 className="font-bold text-red-700">✗ 対象外の業務</h2>
           <p className="mt-1 text-xs text-ink-muted">
-            医療行為は一切ありません。資格不要で安心して参加できます。
+            医療行為は一切ありません。看護師資格の有無を問わず参加できます。
           </p>
           <ul className="mt-3 space-y-1.5 text-sm">
             {NG_TASKS.map((t) => (
@@ -180,7 +179,7 @@ export default async function InternshipDetail({
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               1
             </span>
-            受付で学生証を提示→着替え
+            受付で本人確認→更衣
           </li>
           <li className="flex gap-3">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
@@ -192,23 +191,23 @@ export default async function InternshipDetail({
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               3
             </span>
-            先輩看護師とペアで環境整備・配膳などサポート
+            スタッフとペアで環境整備・配膳などをサポート
           </li>
           <li className="flex gap-3">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               4
             </span>
-            休憩時間に看護師さんと雑談、質問タイム
+            休憩中にスタッフへの質問・情報収集タイム
           </li>
           <li className="flex gap-3">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-coral-100 text-xs font-medium tracking-tight text-coral-500">
               5
             </span>
-            終了後、任意で感想フィードバック
+            終了後、任意でフィードバック記入
           </li>
         </ol>
         <p className="mt-4 text-[11px] text-ink-muted">
-          ※ 動きやすい服装でお越しください。ユニフォームと靴は病院が貸出します。
+          ※ 動きやすい服装でお越しください。ユニフォームは病院が貸出します。
         </p>
       </section>
     </div>

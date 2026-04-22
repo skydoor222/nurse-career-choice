@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calendar, Clock, MapPin, Sparkles, Shirt, Wallet } from "lucide-react";
+import { Calendar, Clock, MapPin, Sparkles, Wallet } from "lucide-react";
 import { getInternships } from "@/lib/queries";
 import { DEPARTMENTS, PREFECTURES, formatDate, formatTime } from "@/lib/utils";
 
@@ -23,38 +23,36 @@ export default async function InternshipsPage({
       <header className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-br from-coral-500 via-[#ff5a9a] to-[#ff8cb5] p-6 text-white md:p-8">
         <p className="inline-flex items-center gap-1 rounded-full bg-white/20 px-2.5 py-1 text-[11px] font-bold backdrop-blur">
           <Sparkles className="h-3 w-3" />
-          学生向け・バイト感覚でOK
+          1日から体験できる
         </p>
         <h1 className="mt-3 text-2xl font-medium tracking-tight leading-tight md:text-3xl">
-          1日だけ、
+          入職前に、
           <br className="md:hidden" />
-          病棟に潜入してみる。
+          現場の空気を確かめる。
         </h1>
         <p className="mt-3 max-w-md text-sm leading-relaxed text-white/90">
-          <strong className="text-white">看護助手として</strong>
-          シーツ交換や環境整備を体験。
-          医療行為なし、<strong className="text-white">資格不要</strong>
-          。実習より気軽に、アルバイト感覚で現場の雰囲気が分かります。
+          看護助手として病棟に入り、チームの雰囲気・業務のテンポ・スタッフの関わり方をリアルに確認。
+          <strong className="text-white">医療行為なし・資格不要</strong>
+          。転職先を決める前に、自分の目で見て判断できます。
         </p>
         <div className="mt-4 flex flex-wrap gap-2 text-xs">
           <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1 font-bold">
             <Wallet className="h-3 w-3" />
-            時給あり（目安: 1,100〜1,500円）
+            参加費無料・交通費支給あり
           </span>
           <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1 font-bold">
-            <Shirt className="h-3 w-3" />
-            ユニフォームは病院貸出
+            事前面接なし
           </span>
           <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1 font-bold">
-            面接なし・履歴書不要
+            現役・離職中どちらも参加可
           </span>
         </div>
       </header>
 
       <section className="mb-6 grid gap-3 sm:grid-cols-3">
-        <HowCard step={1} title="日程を選ぶ" desc="学校終わりの夕方〜1日OK。自分の都合に合わせて応募。" />
-        <HowCard step={2} title="簡単フォーム" desc="名前と志望動機を入力。履歴書なしで30秒。" />
-        <HowCard step={3} title="当日は看護助手として" desc="シーツ交換・配膳・環境整備など。医療行為は一切なし。" />
+        <HowCard step={1} title="日程を選ぶ" desc="1日単位で参加可能。複数の病棟を比較するのにも使えます。" />
+        <HowCard step={2} title="簡単フォーム" desc="名前と参加目的を入力するだけ。書類選考はありません。" />
+        <HowCard step={3} title="当日、現場を体験" desc="看護助手として環境整備・配膳などをサポート。スタッフと直接話せます。" />
       </section>
 
       <form
@@ -90,7 +88,7 @@ export default async function InternshipsPage({
       </form>
 
       <h2 className="mb-3 text-sm font-medium tracking-tight text-ink-muted">
-        募集中の体験枠 ({internships.length}件)
+        受付中の体験枠 ({internships.length}件)
       </h2>
       {internships.length === 0 ? (
         <p className="card text-sm text-ink-muted">
