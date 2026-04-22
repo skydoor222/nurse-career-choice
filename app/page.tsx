@@ -13,7 +13,6 @@ import {
   Play,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
-import { TrustFooter } from "@/components/trust-footer";
 
 export default function LandingPage() {
   return (
@@ -237,7 +236,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <TrustFooter />
       </main>
     </>
   );
