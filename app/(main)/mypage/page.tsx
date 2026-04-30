@@ -1,20 +1,14 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { Calendar, Clock, LogOut, Heart, Sparkles } from "lucide-react";
+import { Calendar, Clock, LogOut, Heart, Sparkles, RefreshCw } from "lucide-react";
 import { createServer } from "@/lib/supabase";
 import { WardCard } from "@/components/ward-card";
 import { summarizeReviews } from "@/lib/queries";
 import { formatDate, formatTime } from "@/lib/utils";
+import { signOutAction, switchAccountAction } from "@/app/actions";
 import type { WardSummary } from "@/types";
 
 export const dynamic = "force-dynamic";
-
-async function signOut() {
-  "use server";
-  const sb = createServer();
-  await sb.auth.signOut();
-  redirect("/");
-}
 
 export default async function MyPage({
   searchParams,
@@ -85,7 +79,13 @@ export default async function MyPage({
           <Link href="/profile/setup" className="text-xs font-bold text-coral-500">
             プロフィール編集
           </Link>
-          <form action={signOut}>
+          <form action={switchAccountAction}>
+            <button className="inline-flex items-center gap-1 text-xs text-ink-muted hover:text-ink">
+              <RefreshCw className="h-3 w-3" />
+              別アカウントでログイン
+            </button>
+          </form>
+          <form action={signOutAction}>
             <button className="inline-flex items-center gap-1 text-xs text-ink-muted hover:text-ink">
               <LogOut className="h-3 w-3" />
               ログアウト

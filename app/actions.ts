@@ -2,6 +2,19 @@
 
 import { createServer } from "@/lib/supabase";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+export async function signOutAction() {
+  const sb = createServer();
+  await sb.auth.signOut();
+  redirect("/login");
+}
+
+export async function switchAccountAction() {
+  const sb = createServer();
+  await sb.auth.signOut();
+  redirect("/login?switch=1");
+}
 
 export async function toggleFavorite(wardId: string, favorite: boolean) {
   const sb = createServer();

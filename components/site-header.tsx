@@ -1,11 +1,22 @@
 import Link from "next/link";
 import { createServer } from "@/lib/supabase";
+import { UserMenu } from "./user-menu";
 
 export async function SiteHeader() {
   const sb = createServer();
   const {
     data: { user },
   } = await sb.auth.getUser();
+
+  let displayName = "";
+  if (user) {
+    const { data: profile } = await sb
+      .from("user_profiles")
+      .select("display_name")
+      .eq("id", user.id)
+      .single();
+    displayName = profile?.display_name ?? "";
+  }
 
   return (
     <header className="sticky top-0 z-30 border-b border-hairline bg-canvas/80 backdrop-blur-xl">
@@ -21,18 +32,18 @@ export async function SiteHeader() {
             NurseChoice
           </span>
         </Link>
-        <nav className="hidden items-center gap-1 text-sm md:flex">
-          <HeaderLink href="/search">病棟</HeaderLink>
-          <HeaderLink href="/internships">1日体験</HeaderLink>
-          <HeaderLink href="/matching">相性診断</HeaderLink>
-          <span className="mx-2 h-6 w-px bg-hairline" />
+        <nav className="flex items-center gap-1 text-sm">
+          <div className="hidden items-center gap-1 md:flex">
+            <HeaderLink href="/search">病棟</HeaderLink>
+            <HeaderLink href="/internships">1日体験</HeaderLink>
+            <HeaderLink href="/matching">相性診断</HeaderLink>
+            <span className="mx-2 h-6 w-px bg-hairline" />
+          </div>
           {user ? (
-            <Link
-              href="/mypage"
-              className="inline-flex h-10 items-center gap-1.5 rounded-full bg-ink px-5 text-sm font-medium text-canvas transition hover:bg-ink/90"
-            >
-              マイページ
-            </Link>
+            <UserMenu
+              displayName={displayName}
+              email={user.email ?? ""}
+            />
           ) : (
             <>
               <Link
